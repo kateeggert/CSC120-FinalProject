@@ -4,5 +4,11 @@ public class emptyCell extends mazeCell{
 
     public emptyCell(){
         isWall = false;
+        creature = null;
+    }
+
+    public emptyCell(obstacle ob){
+        isWall = false;
+        creature = ob;
     }
 }

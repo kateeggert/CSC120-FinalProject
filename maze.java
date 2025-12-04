@@ -1,35 +1,36 @@
 public class maze{
     // instance variables
     private static final int MAZE_SIZE = 11;
-    //private static final coordinate START;
-    //private static final coordinate END;
-    private coordinate playerPos;
-    private mazeCell[][] map;
-
-    public maze(){
-        //playerPos = START;
-        map = new mazeCell[MAZE_SIZE][MAZE_SIZE];
-        createMaze();
-    }
-
-    private void createMaze(){
-        String template = 
+    public static final Coordinate START = new Coordinate(10, 5);
+    public static final Coordinate END = new Coordinate(5, 5);
+    private static final String TEMPLATE = 
         "xxxxxxxxxxx" + 
         "xooooooooox" + 
         "xoxxxxxxxox" +
         "xoxoooooxox" + 
         "xoxoxxxoxox" +
-        "xoxoxoxoxox" +
+        "xsxoxoxoxox" +
         "xoxoxoxoxox" +
         "xoxoooxoxox" +
         "xoxxxxxoxox" +
         "xoooooxooox" +
         "xxxxxoxxxxx";
+    private Coordinate playerPos;
+    private mazeCell[][] map;
 
-        for(int i = 0; i < 11; i ++){
-            for(int j = 0; j < 11; j ++){
-                if(template.substring(i*11 + j, i*11 + j + 1).equals("x")){
+    public maze(){
+        playerPos = START;
+        map = new mazeCell[MAZE_SIZE][MAZE_SIZE];
+        createMaze();
+    }
+
+    private void createMaze(){
+        for(int i = 0; i < MAZE_SIZE; i ++){
+            for(int j = 0; j < MAZE_SIZE; j ++){
+                if(TEMPLATE.substring(i*MAZE_SIZE + j, i*MAZE_SIZE + j + 1).equals("x")){
                     map[i][j] = new wall();
+                } else if (TEMPLATE.substring(i*MAZE_SIZE + j, i*MAZE_SIZE + j + 1).equals("s")){
+                    map[i][j] = new emptyCell(new sphinx());
                 } else {
                     map[i][j] = new emptyCell();
                 }
@@ -42,9 +43,9 @@ public class maze{
         for(int i = 0; i < MAZE_SIZE; i ++){
             for(int j = 0; j < MAZE_SIZE; j ++){
                 if(map[i][j].isWall){
-                    output += "x";
+                    output += "X";
                 } else{
-                    output += "o";
+                    output += " ";
                 }
             }
             output += "\n";
@@ -52,28 +53,51 @@ public class maze{
         return output;
     }
 
+    public boolean isValidMove(String direction){
+        if(direction.equals("north")){
+            if(map[playerPos.getRow() - 1][playerPos.getColumn()].isWall()){
+                return false;
+            }
+        }
+        if(direction.equals("south")){
+            if(map[playerPos.getRow() + 1][playerPos.getColumn()].isWall()){
+                return false;
+            }
+        }
+        if(direction.equals("east")){
+            if(map[playerPos.getRow()][playerPos.getColumn() + 1].isWall()){
+                return false;
+            }
+        }
+        if(direction.equals("west")){
+            if(map[playerPos.getRow()][playerPos.getColumn() - 1].isWall()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Coordinate move(String direction){
+        if(!isValidMove(direction)){
+            throw new RuntimeException("Did not check if move is valid before moving. ");
+        }
+        if(direction.equals("north")){
+            playerPos.changeRow(-1);
+        }
+        if(direction.equals("south")){
+            playerPos.changeRow(1);
+        }
+        if(direction.equals("east")){
+            playerPos.changeColumn(1);
+        }
+        if(direction.equals("north")){
+            playerPos.changeColumn(-1);
+        }
+        return playerPos;
+    }
+
     public static void main(String[] args){
         maze test = new maze();
         System.out.println(test);
     }
-    // helper class
-    private class coordinate{
-        // instance variables
-        int xpos;
-        int ypos;
-
-        //maze test1 = new maze();
-        //maze.coordinate test = test1.new coordinate(1, 2);
-
-        public coordinate(int x, int y){
-            xpos = x;
-            ypos = y;
-        }
-
-        public String toString(){
-            return "(" + xpos +", " + ypos +")";
-        }
-    }
-
-
 }

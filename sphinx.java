@@ -1,3 +1,3 @@
-public class sphinx {
+public class sphinx extends obstacle{
     
 }

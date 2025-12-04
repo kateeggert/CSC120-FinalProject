@@ -1,11 +1,11 @@
 public abstract class mazeCell {
     // instance variables
     boolean isWall;
-    protected mazeCell(){
-        isWall = false;
-    }
+    //protected mazeCell(){
+    //    isWall = false;
+    //}
 
-    public boolean getIsWall(){
+    public boolean isWall(){
         return isWall;
     }
 }

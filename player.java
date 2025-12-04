@@ -1,14 +1,12 @@
 public class player {
     
     // Attributes
-    String name;
     int xPosition;
     int yPosition;
     int health;
 
     // Constructor
-    public player(String name, int xPosition, int yPosition, int health) {
-        this.name = name;
+    public player() {
         this.xPosition = 6; 
         this.yPosition = 0;
         this.health = 20;
@@ -37,9 +35,7 @@ public class player {
                 System.out.println("You have reached the end of the maze. You cannot move any farther");
             }
             this.yPosition -=1;
-        } else {
-            System.out.println("Please enter a valid direction. Your options are Right, Left, Forwards, or Backwards");
-        }
+        } 
     }
 
     public void castSpell(String spell){
@@ -53,6 +49,14 @@ public class player {
     public int deductHealth() {
         this.health -= 1;
         return this.health;
+    }
+    
+    public boolean hasHealth() {
+        if (this.health > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

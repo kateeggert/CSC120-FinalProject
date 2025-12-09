@@ -33,8 +33,7 @@ public class gameLoop {
             System.out.println("You are still playing. Follow the instructions if you want to win/lose...");
             userResponse = userInput.nextLine().toUpperCase();
             // If the user inputs a direction, move in that direction. If not, nothing will happen.
-            user.move(userResponse);
-
+            triwizardMaze.move(userResponse);
             // ***********************************************************************
             // And as the player interacts, you'll check to see if the game should end
             //  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓

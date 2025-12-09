@@ -102,12 +102,13 @@ public class maze {
         return playerPos;
     }
 
-    public void play() {
+    public int play() {
+        int healthDeduction = 0;
         if (((emptyCell) map[playerPos.getRow()][playerPos.getColumn()]).containsObstacle()) {
-            ((emptyCell) map[playerPos.getRow()][playerPos.getColumn()]).getObstacle().run();
+            healthDeduction += ((emptyCell) map[playerPos.getRow()][playerPos.getColumn()]).getObstacle().run();
         }
         if(playerAtEnd()){
-            return;
+            return 0;
         }
 
         ArrayList<String> output = new ArrayList<>();
@@ -131,6 +132,8 @@ public class maze {
         for(int i = 0; i < output.size(); i ++){
             System.out.print(output.get(i) + " ");
         }
+
+        return healthDeduction;
     }
 
     public boolean playerAtEnd() {

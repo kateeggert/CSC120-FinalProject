@@ -26,6 +26,11 @@ public class player {
         this.health -= 1;
         return this.health;
     }
+
+    public int deductHealth(int n) {
+        this.health -= n;
+        return this.health;
+    }
     
     public boolean hasHealth() {
         if (this.health > 0) {

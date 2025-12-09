@@ -20,7 +20,7 @@ public class gameLoop {
 
         // Instructions
         System.out.println("Navigate the maze to find the triwizard cup! Watch out for obstacles and beware of the walls.");
-
+        System.out.println("Type in \"north\", \"south\", \"east\", or \"west\" to move. ");
         // Generate instances of the classes
         player user = new player();
         maze triwizardMaze = new maze();
@@ -29,20 +29,13 @@ public class gameLoop {
         do {
 
             System.out.println("You are still playing. Follow the instructions if you want to win/lose...");
-            userResponse = userInput.nextLine().toUpperCase();
+            userResponse = userInput.nextLine();
 
             // If the user inputs a direction, move in that direction. If the direction is invalid, the user will lose health.
             triwizardMaze.move(userResponse);
 
             // If there is a sphinx in the user's location, run the riddle and user deduct health accordingly.
-            if (triwizardMaze.isSphinx()) {
-                int deductHealth;
-                sphinx mySpinx = new sphinx(0, 0, userResponse, userResponse, userResponse);
-                deductHealth = mySpinx.askRiddle();
-                for (int i = 0; i < deductHealth; i++) {
-                    user.deductHealth();
-                }
-            }
+            user.deductHealth(triwizardMaze.play());
 
             // If the user runs out of health, game stops - EDIT: add other ways that the game can be finished
             if (!user.hasHealth()) {

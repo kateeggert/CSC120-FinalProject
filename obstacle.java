@@ -1,18 +1,24 @@
 public class obstacle {
     
     // Attributes
-    int xPosition;
-    int yPosition;
-    String name;
+    protected String name;
+    protected String n;
 
-    public obstacle(int xPosition, int yPosition, String name) {
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
+    public obstacle(String name) {
         this.name = name;
+        n = "";
     }
 
-    public obstacle() {
-        this(0, 0, null);
+    public obstacle(String name, String n) {
+        this.name = name;
+        this.n = n;
     }
 
+    public String getn(){
+        return n;
+    }
+
+    public int run(){
+        return -1;
+    }
 }

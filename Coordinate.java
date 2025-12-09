@@ -11,6 +11,13 @@ public class Coordinate {
         column = c;
     }
 
+    public boolean equals(Coordinate other){
+        if(other.row == this.row && other.column == this.column){
+            return true;
+        }
+        return false;
+    }
+
     public int getRow(){
         return row;
     }

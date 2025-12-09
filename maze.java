@@ -1,21 +1,21 @@
 public class maze{
     // instance variables
     private static final int MAZE_SIZE = 11;
-    public static final Coordinate START = new Coordinate(10, 5);
-    public static final Coordinate END = new Coordinate(5, 5);
+    private static final Coordinate START = new Coordinate(10, 5);
+    private static final Coordinate END = new Coordinate(5, 5);
     private static final String TEMPLATE = 
         "xxxxxxxxxxx" + 
-        "xooooooooox" + 
+        "xsoooooooox" + 
         "xoxxxxxxxox" +
         "xoxoooooxox" + 
         "xoxoxxxoxox" +
-        "xsxoxoxoxox" +
+        "xoxoxoxoxox" +
         "xoxoxoxoxox" +
         "xoxoooxoxox" +
         "xoxxxxxoxox" +
         "xoooooxooox" +
         "xxxxxoxxxxx";
-    private Coordinate playerPos;
+    public Coordinate playerPos;
     private mazeCell[][] map;
 
     public maze(){
@@ -44,7 +44,10 @@ public class maze{
             for(int j = 0; j < MAZE_SIZE; j ++){
                 if(map[i][j].isWall){
                     output += "X";
-                } else{
+                } else if (((emptyCell)(map[i][j])).containsObstacle()){
+                    output += ((emptyCell)(map[i][j])).getObstacle().getn();
+                }
+                else{
                     output += " ";
                 }
             }
@@ -94,6 +97,13 @@ public class maze{
             playerPos.changeColumn(-1);
         }
         return playerPos;
+    }
+
+    public boolean playerAtEnd(){
+        if(playerPos.equals(END)){
+            return true;
+        }
+        return false;
     }
 
     public static void main(String[] args){

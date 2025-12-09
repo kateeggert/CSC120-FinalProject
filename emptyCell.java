@@ -11,4 +11,15 @@ public class emptyCell extends mazeCell{
         isWall = false;
         creature = ob;
     }
+
+    public obstacle getObstacle(){
+        return creature;
+    }
+
+    public boolean containsObstacle(){
+        if(creature == null){
+            return false;
+        }
+        return true;
+    }
 }

@@ -96,7 +96,7 @@ public class maze {
         if (direction.equals("east")) {
             playerPos.changeColumn(1);
         }
-        if (direction.equals("north")) {
+        if (direction.equals("west")) {
             playerPos.changeColumn(-1);
         }
         return playerPos;

@@ -16,7 +16,7 @@ public class sphinx extends obstacle{
 
         boolean isCorrect = false;
         String userResponse = "";
-        int deductHealth = 0;
+        int deductHealth = -1;
 
         Scanner guess = new Scanner(System.in);
         System.out.println("Figure out the riddle before you may pass");
@@ -25,7 +25,7 @@ public class sphinx extends obstacle{
         do {
             deductHealth += 1;    
             System.out.println("Make a guess... or risk death");
-            userResponse = guess.nextLine().toUpperCase();
+            userResponse = guess.nextLine();
 
             if (riddleAnswers.contains(userResponse)) {
                 isCorrect = true;

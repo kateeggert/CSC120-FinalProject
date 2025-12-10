@@ -1,13 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 public class player {
-    
-<<<<<<< HEAD
-    int health;
-=======
     // Attributes
     private int health;
->>>>>>> 2145706171a3e49189a8b16231573b37ad56c655
     private static ArrayList<String> spellBook = new ArrayList<>(Arrays.asList("Avada Kedavra", "Expelliarmus", "Crucio", "Sectumsempra", "Stupefy"));
     private static ArrayList<Integer> damage = new ArrayList<>(Arrays.asList(5, 2, 4, 3, 1));
 
@@ -18,38 +13,24 @@ public class player {
         this.health = 20;
     }
 
-<<<<<<< HEAD
     /**
      * Prints out the list of spells
      */
-    public void printSpellList(){
-=======
     public int getHealth(){
         return health;
     }
 
     public static void printSpellList(){
->>>>>>> 2145706171a3e49189a8b16231573b37ad56c655
         for(int i = 0; i < spellBook.size(); i ++){
             System.out.println(spellBook.get(i));
         }
     }
 
-<<<<<<< HEAD
     /**
      * Checks whether a string input is a valid spell
      * @param spell
      * @return boolean of if spell is within spell book array
      */
-    public boolean isSpell(String spell){
-        return spellBook.contains(spell);
-    }
-
-    /**
-     * Deducts the user's health bar by one and tells the user the health they have left
-     * @return user's health
-     */
-=======
     public static boolean isSpell(String spell){
         return spellBook.contains(spell);
     }
@@ -61,7 +42,6 @@ public class player {
         return damage.get(spellBook.indexOf(spell));
     }
 
->>>>>>> 2145706171a3e49189a8b16231573b37ad56c655
     public int deductHealth() {
         this.health -= 1;
         System.out.println("Watch out! You only have " + this.health + " left...");

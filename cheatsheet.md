@@ -1,8 +1,25 @@
-This file will contain documentation for all commands available in your game.
+# COMMANDS
 
-Note:  It's a good idea to also make this list available inside the game, in response to a `HELP` command.
+Movement commands to navigate the maze:
+ - north 
+ - south
+ - east 
+ - west
 
+Spell commands to cast a spell:
+ - Avada Kedavra
+ - Expelliarmus
+ - Crucio 
+ - Sectumsempra 
+ - Stupefy
 
-# SPOILER ALERT
+Command to view the maze:
+ - 
 
-If your game includes challenges that must be overcome to win, also list them below.
+# LAYOUT DESCRIPTION 
+
+The game is a  maze that leads to the Triwizard Cup. The maze can be accessed at any time by using the appropiate help command. 
+
+# CHALLENGES
+
+The user must solve the riddle (or cast a correct spell) to pass the sphynx. The user then must complete the maze without running out of health. 

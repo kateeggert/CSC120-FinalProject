@@ -40,7 +40,7 @@ public class gameLoop {
             // If there is a sphinx in the user's location, run the riddle and user deduct health accordingly.
             user.deductHealth(triwizardMaze.play());
 
-            // If the user runs out of health, game stops - EDIT: add other ways that the game can be finished
+            // If the user runs out of health, game stops
             if (!user.hasHealth()) {
                 stillPlaying = false;
             }

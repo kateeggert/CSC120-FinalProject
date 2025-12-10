@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.util.ArrayList;
 
 public class sphinx extends obstacle{
@@ -13,27 +12,23 @@ public class sphinx extends obstacle{
     }
 
     public int run() {
-
         boolean isCorrect = false;
         String userResponse = "";
         int deductHealth = -1;
 
-        Scanner guess = new Scanner(System.in);
         System.out.println("Figure out the riddle before you may pass");
         System.out.println(this.riddle);
 
         do {
             deductHealth += 1;    
             System.out.println("Make a guess... or risk death");
-            userResponse = guess.nextLine();
+            userResponse = gameLoop.userInput.nextLine();
 
             if (riddleAnswers.contains(userResponse)) {
                 isCorrect = true;
             }
 
         } while(!isCorrect);
-
-        guess.close();
         return deductHealth;
     }
 }

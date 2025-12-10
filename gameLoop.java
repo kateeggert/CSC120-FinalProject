@@ -1,14 +1,15 @@
 import java.util.Scanner;
 
 public class gameLoop {
+    // We'll use this to get input from the user.
+    public static Scanner userInput = new Scanner(System.in);
+    public static player user = new player();
+    public static maze triwizardMaze = new maze();
 
     public static void main(String[] args) {
 
         // This is a "flag" to let us know when the loop should end
         boolean stillPlaying = true;
-
-        // We'll use this to get input from the user.
-        Scanner userInput = new Scanner(System.in);
 
         // Storage for user's responses
         String userResponse = "";
@@ -21,18 +22,20 @@ public class gameLoop {
         // Instructions
         System.out.println("Navigate the maze to find the triwizard cup! Watch out for obstacles and beware of the walls.");
         System.out.println("Type in \"north\", \"south\", \"east\", or \"west\" to move. ");
-        // Generate instances of the classes
-        player user = new player();
-        maze triwizardMaze = new maze();
 
         // Runs the game until the user dies or is at the end
         do {
-
-            System.out.println("You are still playing. Follow the instructions if you want to win/lose...");
+            triwizardMaze.moveOptions();
+            //System.out.println("You are still playing. Follow the instructions if you want to win/lose...");
             userResponse = userInput.nextLine();
 
             // If the user inputs a direction, move in that direction. If the direction is invalid, the user will lose health.
-            triwizardMaze.move(userResponse);
+            if(userResponse.equals("north") || userResponse.equals("south") || userResponse.equals("east") || userResponse.equals("west")){
+                triwizardMaze.move(userResponse);
+            }
+            else if (player.isSpell(userResponse)){
+                System.out.println("You casted a spell");
+            }
 
             // If there is a sphinx in the user's location, run the riddle and user deduct health accordingly.
             user.deductHealth(triwizardMaze.play());
@@ -52,10 +55,12 @@ public class gameLoop {
         userInput.close();
 
         // Once you exit the loop, you may need to deal with various possible stopping conditions
-        if (triwizardMaze.playerAtEnd()) {
-            System.out.println("Yay, you won the Triwizard Cup! Don't run into You Know Who anytime soon...");
-        } else {
+        if (user.getHealth() < 0 && triwizardMaze.playerAtEnd()) {
+            System.out.println("You fought noblely until the end, but you were not strong enough to beat Voldemort. ");
+        } else if (user.getHealth() < 0 && !triwizardMaze.playerAtEnd()){
             System.out.println("Better luck next time. At least you didn't find You Know Who");
+        } else {
+            System.out.println("You have defeated Voldemort and saved the Wizarding world! ");
         }
 
     }

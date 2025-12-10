@@ -2,20 +2,38 @@ import java.util.ArrayList;
 
 public class maze {
     // instance variables
-    private static final int MAZE_SIZE = 11;
-    private static final Coordinate START = new Coordinate(10, 5);
-    private static final Coordinate END = new Coordinate(5, 5);
-    private static final String TEMPLATE = "xxxxxxxxxxx" +
-            "xsoooooooox" +
-            "xoxxxxxxxox" +
-            "xoxoooooxox" +
-            "xoxoxxxoxox" +
-            "xoxoxoxoxox" +
-            "xoxoxoxoxox" +
-            "xoxoooxoxox" +
-            "xoxxxxxoxox" +
-            "xoooooxooox" +
-            "xxxxxoxxxxx";
+    private static final int MAZE_SIZE = 16;
+    private static final Coordinate START = new Coordinate(14, 9);
+    private static final Coordinate END = new Coordinate(1, 14);
+    private static final String DRAFT_TEMPLATE = 
+        "xxxxxxxxxxx" +
+        "xsoooooooox" +
+        "xoxxxxxxxox" +
+        "xoxoooooxox" +
+        "xoxoxxxoxox" +
+        "xoxoxoxoxox" +
+        "xoxoxoxoxox" +
+        "xoxoooxoxox" +
+        "xoxxxxxoxox" +
+        "xoooooxooox" +
+        "xxxxxxxxxxx";
+    private static final String TEMPLATE = 
+        "xxxxxxxxxxxxxxxx" + 
+        "xoooxoooooooxxox" + 
+        "xoxoooxxxoxoooox" + 
+        "xoxxxxxoooxxxxox" +
+        "xoooooxoxooooxxx" + 
+        "xxxxxsxxxxxxoxox" +
+        "xoooxoxoooxooxox" +
+        "xoxoxoooxoooxxox" +
+        "xoxoxxxoxxxxxoox" +
+        "xoxoooxoooooooxx" +
+        "xoxxxoooxxxxxoxx" +
+        "xoooxxxxxoooxoox" +
+        "xxxoxoooooxoxxox" +
+        "xoxoxoxxxxxoooox" +
+        "xoooxoooooxooxox" +
+        "xxxxxxxxxxxxxxxx";
     public Coordinate playerPos;
     private mazeCell[][] map;
 
@@ -63,9 +81,6 @@ public class maze {
             }
         }
         if (direction.equals("south")) {
-            if (playerPos.getRow() == 10) {
-                return false;
-            }
             if (map[playerPos.getRow() + 1][playerPos.getColumn()].isWall()) {
                 return false;
             }
@@ -85,7 +100,8 @@ public class maze {
 
     public Coordinate move(String direction) {
         if (!isValidMove(direction)) {
-            throw new RuntimeException("Did not check if move is valid before moving. ");
+            System.out.println("That's a wall! Try again. ");
+            return playerPos;
         }
         if (direction.equals("north")) {
             playerPos.changeRow(-1);
@@ -107,19 +123,17 @@ public class maze {
         if (((emptyCell) map[playerPos.getRow()][playerPos.getColumn()]).containsObstacle()) {
             healthDeduction += ((emptyCell) map[playerPos.getRow()][playerPos.getColumn()]).getObstacle().run();
         }
-        if(playerAtEnd()){
-            return 0;
-        }
+        return healthDeduction;
+    }
 
+    public void moveOptions(){
         ArrayList<String> output = new ArrayList<>();
 
         if (!map[playerPos.getRow() - 1][playerPos.getColumn()].isWall()) {
             output.add("north");
         }
-        if (playerPos.getRow() != 10) {
-            if (!map[playerPos.getRow() + 1][playerPos.getColumn()].isWall()) {
-                output.add("south");
-            }
+        if (!map[playerPos.getRow() + 1][playerPos.getColumn()].isWall()) {
+            output.add("south");
         }
         if (!map[playerPos.getRow()][playerPos.getColumn() + 1].isWall()) {
             output.add("east");
@@ -132,8 +146,7 @@ public class maze {
         for(int i = 0; i < output.size(); i ++){
             System.out.print(output.get(i) + " ");
         }
-
-        return healthDeduction;
+        System.out.println();
     }
 
     public boolean playerAtEnd() {

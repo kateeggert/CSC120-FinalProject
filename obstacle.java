@@ -1,4 +1,4 @@
-public class obstacle {
+public abstract class obstacle {
     
     // Attributes
     protected String name;
@@ -18,7 +18,5 @@ public class obstacle {
         return n;
     }
 
-    public int run(){
-        return -1;
-    }
+    public abstract int run();
 }

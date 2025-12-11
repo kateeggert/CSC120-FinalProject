@@ -62,7 +62,9 @@ public class gameLoop {
         userInput.close();
 
         // Once you exit the loop, you may need to deal with various possible stopping conditions
-        if (user.getHealth() < 0 && triwizardMaze.playerAtEnd()) {
+        if(userResponse.equals("end")){
+
+        } else if (user.getHealth() < 0 && triwizardMaze.playerAtEnd()) {
             System.out.println("You fought noblely until the end, but you were not strong enough to beat Voldemort. ");
         } else if (user.getHealth() < 0 && !triwizardMaze.playerAtEnd()){
             System.out.println("Better luck next time. At least you didn't find You Know Who");

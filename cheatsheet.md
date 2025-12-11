@@ -13,6 +13,11 @@ Spell commands to cast a spell:
  - Sectumsempra 
  - Stupefy
 
+ Other Commands:
+ - spell book (prints out spells)
+ - hint (prints out a diagram of the maze)
+ - end (ends game used for testing purposes)
+
 # LAYOUT DESCRIPTION 
 
 The game is a  maze that leads to the Triwizard Cup. The maze can be accessed at any time by using the appropiate help command. 

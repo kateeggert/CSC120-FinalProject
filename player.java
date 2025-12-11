@@ -44,7 +44,7 @@ public class player {
 
     public int deductHealth() {
         this.health -= 1;
-        System.out.println("Watch out! You only have " + this.health + " left...");
+        System.out.println("You have " + this.health + " bars of health left...");
         return this.health;
     }
 
@@ -55,7 +55,9 @@ public class player {
      */
     public int deductHealth(int n) {
         this.health -= n;
-        System.out.println("Watch out! You only have " + this.health + " left...");
+        if (n > 0) {
+            System.out.println("You have " + this.health + " bars of health left...");
+        }
         return this.health;
     }
     

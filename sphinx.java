@@ -14,18 +14,19 @@ public class sphinx extends obstacle{
     public int run() {
         boolean isCorrect = false;
         String userResponse = "";
-        int deductHealth = -1;
+        int deductHealth = 0;
 
         System.out.println("Figure out the riddle before you may pass");
         System.out.println(this.riddle);
 
         do {
-            deductHealth += 1;    
-            System.out.println("Make a guess... or risk death");
             userResponse = gameLoop.userInput.nextLine();
 
             if (riddleAnswers.contains(userResponse)) {
                 isCorrect = true;
+            } else {
+                deductHealth += 1;    
+                System.out.println("You lost one health bar. Guess again!");
             }
 
         } while(!isCorrect);

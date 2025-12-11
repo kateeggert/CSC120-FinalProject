@@ -19,7 +19,7 @@ public class maze {
         "xxxxxxxxxxx";
     private static final String TEMPLATE = 
         "xxxxxxxxxxxxxxxx" + 
-        "xoooxoooooooxxox" + 
+        "xoooxoooooooxxvx" + 
         "xoxoooxxxoxoooox" + 
         "xoxxxxxoooxxxxox" +
         "xoooooxoxooooxxx" + 
@@ -50,6 +50,8 @@ public class maze {
                     map[i][j] = new wall();
                 } else if (TEMPLATE.substring(i * MAZE_SIZE + j, i * MAZE_SIZE + j + 1).equals("s")) {
                     map[i][j] = new emptyCell(new sphinx());
+                } else if (TEMPLATE.substring(i * MAZE_SIZE + j, i * MAZE_SIZE + j + 1).equals("v")) {
+                    map[i][j] = new emptyCell(new Voldemort());
                 } else {
                     map[i][j] = new emptyCell();
                 }

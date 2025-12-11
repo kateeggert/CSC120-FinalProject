@@ -22,6 +22,8 @@ public class gameLoop {
         // Instructions
         System.out.println("Navigate the maze to find the triwizard cup! Watch out for obstacles and beware of the walls.");
         System.out.println("Type in \"north\", \"south\", \"east\", or \"west\" to move. ");
+        System.out.println("Type in \"hint\" to see a print out of the maze.");
+        System.out.println("Type in \"spell book\" to see the list of spells you can use.");
 
         // Runs the game until the user dies or is at the end
         do {
@@ -30,14 +32,17 @@ public class gameLoop {
             userResponse = userInput.nextLine();
 
             // If the user inputs a direction, move in that direction. If the direction is invalid, the user will lose health.
-            if(userResponse.equals("north") || userResponse.equals("south") || userResponse.equals("east") || userResponse.equals("west")){
+            if (userResponse.equals("north") || userResponse.equals("south") || userResponse.equals("east") || userResponse.equals("west")){
                 triwizardMaze.move(userResponse);
-            }
-            else if (player.isSpell(userResponse)){
+            } else if (player.isSpell(userResponse)){
                 System.out.println("You casted a spell");
+            } else if (userResponse.equals("hint")) {
+                System.out.println(triwizardMaze);
+            } else if (userResponse.equals("spell book")) {
+                player.printSpellList();
             }
 
-            // If there is a sphinx in the user's location, run the riddle and user deduct health accordingly.
+            // Runs the game
             user.deductHealth(triwizardMaze.play());
 
             // If the user runs out of health, game stops

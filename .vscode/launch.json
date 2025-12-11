@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "GameLoop",
+            "request": "launch",
+            "mainClass": "GameLoop",
+            "projectName": "CSC120-FinalProject_3ec60968"
+        },
+        {
+            "type": "java",
             "name": "maze",
             "request": "launch",
             "mainClass": "maze",

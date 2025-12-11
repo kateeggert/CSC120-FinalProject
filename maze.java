@@ -1,22 +1,25 @@
 import java.util.ArrayList;
 
-public class maze {
+/**
+ * Represents the TriWizard Maze
+ */
+public class Maze {
     // instance variables
     private static final int MAZE_SIZE = 16;
     private static final Coordinate START = new Coordinate(14, 9);
     private static final Coordinate END = new Coordinate(1, 14);
-    private static final String DRAFT_TEMPLATE = 
-        "xxxxxxxxxxx" +
-        "xsoooooooox" +
-        "xoxxxxxxxox" +
-        "xoxoooooxox" +
-        "xoxoxxxoxox" +
-        "xoxoxoxoxox" +
-        "xoxoxoxoxox" +
-        "xoxoooxoxox" +
-        "xoxxxxxoxox" +
-        "xoooooxooox" +
-        "xxxxxxxxxxx";
+    // private static final String DRAFT_TEMPLATE = 
+    //     "xxxxxxxxxxx" +
+    //     "xsoooooooox" +
+    //     "xoxxxxxxxox" +
+    //     "xoxoooooxox" +
+    //     "xoxoxxxoxox" +
+    //     "xoxoxoxoxox" +
+    //     "xoxoxoxoxox" +
+    //     "xoxoooxoxox" +
+    //     "xoxxxxxoxox" +
+    //     "xoooooxooox" +
+    //     "xxxxxxxxxxx";
     private static final String TEMPLATE = 
         "xxxxxxxxxxxxxxxx" + 
         "xoooxoooooooxxvx" + 
@@ -35,30 +38,39 @@ public class maze {
         "xoooxoooooxooxox" +
         "xxxxxxxxxxxxxxxx";
     public Coordinate playerPos;
-    private mazeCell[][] map;
+    private MazeCell[][] map;
 
-    public maze() {
+    /**
+     * initalizes player position at the start and creates the maze
+     */
+    public Maze() {
         playerPos = START;
-        map = new mazeCell[MAZE_SIZE][MAZE_SIZE];
+        map = new MazeCell[MAZE_SIZE][MAZE_SIZE];
         createMaze();
     }
 
+    /**
+     * Creates a maze with "X" for a wall, "S" for a sphinx, and "V" for Voldemort
+     */
     private void createMaze() {
         for (int i = 0; i < MAZE_SIZE; i++) {
             for (int j = 0; j < MAZE_SIZE; j++) {
                 if (TEMPLATE.substring(i * MAZE_SIZE + j, i * MAZE_SIZE + j + 1).equals("x")) {
-                    map[i][j] = new wall();
+                    map[i][j] = new Wall();
                 } else if (TEMPLATE.substring(i * MAZE_SIZE + j, i * MAZE_SIZE + j + 1).equals("s")) {
-                    map[i][j] = new emptyCell(new sphinx());
+                    map[i][j] = new EmptyCell(new Sphinx());
                 } else if (TEMPLATE.substring(i * MAZE_SIZE + j, i * MAZE_SIZE + j + 1).equals("v")) {
-                    map[i][j] = new emptyCell(new Voldemort());
+                    map[i][j] = new EmptyCell(new Voldemort());
                 } else {
-                    map[i][j] = new emptyCell();
+                    map[i][j] = new EmptyCell();
                 }
             }
         }
     }
 
+    /**
+     * Prints out the maze
+     */
     public String toString() {
         String output = "";
         for (int i = 0; i < MAZE_SIZE; i++) {
@@ -67,8 +79,8 @@ public class maze {
                     output += "X";
                 } else if((new Coordinate(i, j)).equals(playerPos)){
                     output += "P";
-                } else if (((emptyCell) (map[i][j])).containsObstacle()) {
-                    output += ((emptyCell) (map[i][j])).getObstacle().getn();
+                } else if (((EmptyCell) (map[i][j])).containsObstacle()) {
+                    output += ((EmptyCell) (map[i][j])).getObstacle().getn();
                 } else {
                     output += " ";
                 }
@@ -78,6 +90,9 @@ public class maze {
         return output;
     }
 
+    /**
+     * Prints out the maze with the player's current position
+     */
     public void hint(){
         String output = "";
         for (int i = 0; i < MAZE_SIZE; i++) {
@@ -97,6 +112,11 @@ public class maze {
         System.out.println(output);
     }
 
+    /**
+     * Determines if the user's move is to an empty cell
+     * @param direction the direcition the user wants to move
+     * @return true if the space is empty, false if it is a wall
+     */
     public boolean isValidMove(String direction) {
         if (direction.contains("north")) {
             if (map[playerPos.getRow() - 1][playerPos.getColumn()].isWall()) {
@@ -121,6 +141,11 @@ public class maze {
         return true;
     }
 
+    /**
+     * Changes the player's position 
+     * @param direction the direction the user wants to move to
+     * @return the player's position
+     */
     public Coordinate move(String direction) {
         if (!isValidMove(direction)) {
             System.out.println("That's a wall! Try again. ");
@@ -141,14 +166,20 @@ public class maze {
         return playerPos;
     }
 
+    /**
+     * Tracks the user's health deduction as the game runs
+     */
     public int play() {
         int healthDeduction = 0;
-        if (((emptyCell) map[playerPos.getRow()][playerPos.getColumn()]).containsObstacle()) {
-            healthDeduction += ((emptyCell) map[playerPos.getRow()][playerPos.getColumn()]).getObstacle().run();
+        if (((EmptyCell) map[playerPos.getRow()][playerPos.getColumn()]).containsObstacle()) {
+            healthDeduction += ((EmptyCell) map[playerPos.getRow()][playerPos.getColumn()]).getObstacle().run();
         }
         return healthDeduction;
     }
 
+    /**
+     * Prints out the directions that the user can move to without hitting a wall
+     */
     public void moveOptions(){
         ArrayList<String> output = new ArrayList<>();
 
@@ -172,6 +203,10 @@ public class maze {
         System.out.println();
     }
 
+    /**
+     * Returns whether the player's position is at the end
+     * @return true if the player is at the end, false if otherwise
+     */
     public boolean playerAtEnd() {
         if (playerPos.equals(END)) {
             return true;
@@ -180,7 +215,7 @@ public class maze {
     }
 
     public static void main(String[] args) {
-        maze test = new maze();
+        Maze test = new Maze();
         System.out.println(test);
     }
 }

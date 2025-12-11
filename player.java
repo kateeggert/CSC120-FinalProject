@@ -1,25 +1,29 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-public class player {
+public class Player {
     // Attributes
     private int health;
-    private static ArrayList<String> spellBook = new ArrayList<>(Arrays.asList("Avada Kedavra", "Expelliarmus", "Crucio", "Sectumsempra", "Stupefy"));
+    private static ArrayList<String> spellBook = new ArrayList<>(Arrays.asList("avada kedavra", "expelliarmus", "crucio", "sectumsempra", "stupefy"));
     private static ArrayList<Integer> damage = new ArrayList<>(Arrays.asList(5, 2, 4, 3, 1));
 
     /**
-     * Constructor
+     * Creates a player with initial health of 20
      */
-    public player() {
+    public Player() {
         this.health = 20;
     }
 
     /**
-     * Prints out the list of spells
+     * Returns the user's health level
+     * @return user's health level
      */
     public int getHealth(){
         return health;
     }
 
+    /**
+     * Prints out the list of valid spells
+     */
     public static void printSpellList(){
         for(int i = 0; i < spellBook.size(); i ++){
             System.out.println(spellBook.get(i));
@@ -28,13 +32,18 @@ public class player {
 
     /**
      * Checks whether a string input is a valid spell
-     * @param spell
-     * @return boolean of if spell is within spell book array
+     * @param spell user's input
+     * @return true if spell is in the spell book array, false if otherwise
      */
     public static boolean isSpell(String spell){
         return spellBook.contains(spell);
     }
 
+    /**
+     * Returns the damage each spell causes
+     * @param spell user's input
+     * @return int of amount of damage
+     */
     public static int getSpellDamage(String spell){
         if(!isSpell(spell)){
             return 0;
@@ -42,6 +51,10 @@ public class player {
         return damage.get(spellBook.indexOf(spell));
     }
 
+    /**
+     * Deducts the user's health by one and prints the amount of health left
+     * @return the updated health
+     */
     public int deductHealth() {
         this.health -= 1;
         System.out.println("You have " + this.health + " bars of health left...");
@@ -49,9 +62,9 @@ public class player {
     }
 
     /**
-     * Deducts the user's health bar by a given integer and tells the user the health they have left
+     * Deducts the user's health bar by a given integer and prints the amount of health left
      * @param n number to deduct health bar by
-     * @return user's health
+     * @return the updated health
      */
     public int deductHealth(int n) {
         this.health -= n;
@@ -63,7 +76,7 @@ public class player {
     
     /**
      * Checks to see whether the user still has health
-     * @return boolean of if health is greater than zero
+     * @return true if health is greater than zero, false if otherwise
      */
     public boolean hasHealth() {
         if (this.health > 0) {

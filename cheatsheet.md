@@ -20,7 +20,25 @@ Spell commands to cast a spell:
 
 # LAYOUT DESCRIPTION 
 
-The game is a  maze that leads to the Triwizard Cup. The maze can be accessed at any time by using the appropiate help command. 
+The game is a  maze that leads to the Triwizard Cup. The maze can be accessed at any time by using the appropiate help command.
+
+Map Layout:
+    xxxxxxxxxxxxxxxx 
+    xoooxoooooooxxvx 
+    xoxoooxxxoxoooox 
+    xoxxxxxoooxxxxox
+    xoooooxoxooooxxx 
+    xxxxxsxxxxxxoxox
+    xoooxoxoooxooxox
+    xoxoxoooxoooxxox
+    xoxoxxxoxxxxxoox
+    xoxoooxoooooooxx
+    xoxxxoooxxxxxoxx
+    xoooxxxxxoooxoox
+    xxxoxoooooxoxxox
+    xoxoxoxxxxxoooox
+    xoooxoooooxooxox
+    xxxxxxxxxxxxxxxx
 
 # CHALLENGES
 

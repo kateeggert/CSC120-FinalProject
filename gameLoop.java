@@ -40,6 +40,8 @@ public class gameLoop {
                 System.out.println(triwizardMaze);
             } else if (userResponse.equals("spell book")) {
                 player.printSpellList();
+            } else if (userResponse.equals("end")){
+                stillPlaying = false;
             }
 
             // Runs the game

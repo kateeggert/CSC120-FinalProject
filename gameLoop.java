@@ -37,7 +37,7 @@ public class gameLoop {
             } else if (player.isSpell(userResponse)){
                 System.out.println("You casted a spell");
             } else if (userResponse.equals("hint")) {
-                System.out.println(triwizardMaze);
+                triwizardMaze.hint();
             } else if (userResponse.equals("spell book")) {
                 player.printSpellList();
             } else if (userResponse.equals("end")){

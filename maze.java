@@ -78,23 +78,42 @@ public class maze {
         return output;
     }
 
+    public void hint(){
+        String output = "";
+        for (int i = 0; i < MAZE_SIZE; i++) {
+            for (int j = 0; j < MAZE_SIZE; j++) {
+                if (map[i][j].isWall) {
+                    output += "X";
+                } else if((new Coordinate(i, j)).equals(playerPos)){
+                    output += "P";
+                } else if ((new Coordinate(i, j)).equals(END)) {
+                    output += "E";
+                } else {
+                    output += " ";
+                }
+            }
+            output += "\n";
+        }
+        System.out.println(output);
+    }
+
     public boolean isValidMove(String direction) {
-        if (direction.equals("north")) {
+        if (direction.contains("north")) {
             if (map[playerPos.getRow() - 1][playerPos.getColumn()].isWall()) {
                 return false;
             }
         }
-        if (direction.equals("south")) {
+        if (direction.contains("south")) {
             if (map[playerPos.getRow() + 1][playerPos.getColumn()].isWall()) {
                 return false;
             }
         }
-        if (direction.equals("east")) {
+        if (direction.contains("east")) {
             if (map[playerPos.getRow()][playerPos.getColumn() + 1].isWall()) {
                 return false;
             }
         }
-        if (direction.equals("west")) {
+        if (direction.contains("west")) {
             if (map[playerPos.getRow()][playerPos.getColumn() - 1].isWall()) {
                 return false;
             }
@@ -107,16 +126,16 @@ public class maze {
             System.out.println("That's a wall! Try again. ");
             return playerPos;
         }
-        if (direction.equals("north")) {
+        if (direction.contains("north")) {
             playerPos.changeRow(-1);
         }
-        if (direction.equals("south")) {
+        else if (direction.contains("south")) {
             playerPos.changeRow(1);
         }
-        if (direction.equals("east")) {
+        else if (direction.contains("east")) {
             playerPos.changeColumn(1);
         }
-        if (direction.equals("west")) {
+        else if (direction.contains("west")) {
             playerPos.changeColumn(-1);
         }
         return playerPos;

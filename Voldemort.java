@@ -13,7 +13,7 @@ public class Voldemort extends obstacle {
                 +
                 " and you watch him throw the remains of he who must not be named into a cauldron. He comes over to you and draws"
                 +
-                " your blood for the potion. A figure rises out of the Cauldron, it's Voldemort! Cast spells to protect yourself! ");
+                " your blood for the potion. A figure rises out of the Cauldron, it's Voldemort! Cast spells to protect yourself! (type \"spell book\" to view the spells you know. ");
         while (voldemortHealth > 0 && gameLoop.user.getHealth() - deductHealth > 0) {
             userResponce = gameLoop.userInput.nextLine();
             if (player.isSpell(userResponce)) {

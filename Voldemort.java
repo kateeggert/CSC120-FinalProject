@@ -19,7 +19,10 @@ public class Voldemort extends obstacle{
                 if(voldemortHealth > 0){
                     System.out.println("Good choice. Keep Fighting. ");
                 }
-            } else{
+            else if (userResponce.equals("spell book")){
+                player.printSpellList();
+            }
+            } else {
                 System.out.println("That's not a spell, Voldemort has hit you. Minus 2 hearts. ");
                 deductHealth += 2;
             }

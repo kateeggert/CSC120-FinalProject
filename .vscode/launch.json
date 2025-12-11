@@ -16,6 +16,13 @@
             "name": "gameLoop",
             "request": "launch",
             "mainClass": "gameLoop",
+            "projectName": "CSC120-FinalProject_5dced736"
+        },
+        {
+            "type": "java",
+            "name": "gameLoop",
+            "request": "launch",
+            "mainClass": "gameLoop",
             "projectName": "CSC120-FinalProject_3ec60968"
         },
         {

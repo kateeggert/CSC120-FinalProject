@@ -65,6 +65,8 @@ public class maze {
             for (int j = 0; j < MAZE_SIZE; j++) {
                 if (map[i][j].isWall) {
                     output += "X";
+                } else if((new Coordinate(i, j)).equals(playerPos)){
+                    output += "P";
                 } else if (((emptyCell) (map[i][j])).containsObstacle()) {
                     output += ((emptyCell) (map[i][j])).getObstacle().getn();
                 } else {

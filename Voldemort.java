@@ -1,6 +1,6 @@
 public class Voldemort extends obstacle{
     public Voldemort(){
-        super("Voldemort", "v");
+        super("Voldemort", "V");
     }
 
     public int run(){

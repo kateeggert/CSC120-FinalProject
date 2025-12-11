@@ -6,7 +6,7 @@ public class sphinx extends obstacle{
     private ArrayList<String> riddleAnswers;
     
     public sphinx() {
-        super("Sphinx", "s");
+        super("Sphinx", "S");
         this.riddle = "I have no nose, but I can still smell, A dark lord who rose, then terribly fell. My name brings fear, they dare not say.";
         this.riddleAnswers = new ArrayList<String>(java.util.Arrays.asList("Lord Voldemort", "Voldemort", "voldemort"));
     }
